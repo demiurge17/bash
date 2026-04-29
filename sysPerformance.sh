@@ -5,8 +5,26 @@ echo "Free CPU: "
 mpstat | awk '$NF ~ /[0-9.]+/ { print 100 -$NF"% used"}'
 }
 
+get_memory(){
+echo "Free Memory: "
+
+free -m | awk '$NF ~ /[0-9.]+/ { print $4/$2 * 100 }' 
+
+
+}
+
+get_disk(){
+echo "Disk Usage: "
+
+df -h --total | grep ^total
+
+}
+
 main(){
+
     get_cpu
+    get_memory
+    get_disk
 }
 
 main
