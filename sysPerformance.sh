@@ -27,12 +27,20 @@ ps -Ao user,comm,pid,pcpu --sort=-pcpu | head -n 6
 
 }
 
+get_mem_usage(){
+
+echo "Top memory usage: "
+ps -Ao user,comm,pid,pcpu,pmem --sort=-pmem | head -n 6
+
+}
+
 main(){
 
     get_cpu
     get_memory
     get_disk
     get_cpu_usage
+    get_mem_usage
 }
 
 main
