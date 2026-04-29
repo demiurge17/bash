@@ -20,11 +20,19 @@ df -h --total | grep ^total
 
 }
 
+get_cpu_usage(){
+echo "These are eating your processor: "
+
+ps -Ao user,comm,pid,pcpu --sort=-pcpu | head -n 6
+
+}
+
 main(){
 
     get_cpu
     get_memory
     get_disk
+    get_cpu_usage
 }
 
 main
